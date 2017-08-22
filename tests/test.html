@@ -1,12 +1,12 @@
-<script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCYa2I7Yl5A1pz1QptlJsgxEHy00xGDkzc&libraries=places'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.1/webcomponents-lite.js'></script>
+<script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCYa2I7Yl5A1pz1QptlJsgxEHy00xGDkzc&libraries=places'></script>
 
 <meta name=viewport content="width=device-width, initial-scale=1">
 <link rel='import' href='../element/index.html'>
 <link rel='import' href='../node_modules/@josebarrios/ui-organization-card/element/index.html'>
 <link rel='import' href='../node_modules/@josebarrios/ui-job-posting/element/index.html'>
 <link rel='import' href='../node_modules/@josebarrios/ui-address-input/element/index.html'>
-<link rel='import' href='../node_modules/@josebarrios/ui-address-input/element/index.html'>
+<link rel='import' href='../node_modules/@josebarrios/ui-array-input/element/index.html'>
 
 <body style="background-color:#e6e6e6;width:100%; padding:0px; margin:0px">
 	<h1> UI JOB FORM </h1>
@@ -14,7 +14,7 @@
 		<ui-job-posting-form></ui-job-posting-form>
 	</div>
 	<div style="height:100%;overflow:scroll;margin-left:calc(40% + 22px);padding-right:22px;z-index:1;">
-		<ui-job-posting preview="true"></ui-job-posting>
+		<ui-job-posting></ui-job-posting>
 	</div>
 </body>
 <script>
@@ -22,6 +22,7 @@
 const $form = document.querySelector('ui-job-posting-form');
 const $jobPosting = document.querySelector('ui-job-posting');
 
+//Job posting works
 $jobPosting.title = "HELLO";
 $jobPosting.hiringOrganization = {"name" : "AWESOME"};
 

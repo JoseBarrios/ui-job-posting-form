@@ -1,10 +1,6 @@
 //TODO:
-//Change events to 'input'
-//UI-JOB-POSTING-CARD
 //Location issue
 //JobBenefits is not array
-
-
 
 'use strict'
 const uiJobPostingFormDocument = document._currentScript || document.currentScript;;
@@ -27,19 +23,19 @@ class UIJobPostingFormViewController extends HTMLElement{
 	///STANDARD
 	connectedCallback() {
 		this.$baseSalary = this.shadowRoot.querySelector('#baseSalary');
-		this.$baseSalary.addEventListener('input', e => { this._updateEvent(e)});
+		this.$baseSalary.addEventListener('input', e => { this._updateModel(e)});
 
 		this.$datePosted = this.shadowRoot.querySelector('#datePosted');
-		this.$datePosted.addEventListener('input', e => { this._updateEvent(e)});
+		this.$datePosted.addEventListener('input', e => { this._updateModel(e)});
 
 		this.$educationRequirements = this.shadowRoot.querySelector('#educationRequirements');
-		this.$educationRequirements.addEventListener('change', e => { this._updateEvent(e)});
+		//this.$educationRequirements.addEventListener('change', e => { this._updateModel(e)});
 
 		this.$employmentType = this.shadowRoot.querySelector('#employmentType');
-		this.$employmentType.addEventListener('input', e => { this._updateEvent(e)});
+		this.$employmentType.addEventListener('input', e => { this._updateModel(e)});
 
 		this.$experienceRequirements = this.shadowRoot.querySelector('#experienceRequirements');
-		this.$experienceRequirements.addEventListener('change', e => { this._updateEvent(e)});
+		//this.$experienceRequirements.addEventListener('change', e => { this._updateModel(e)});
 
 		//START: Hiring Organization
 		this.$hiringOrganizationName = this.shadowRoot.querySelector('#hiringOrganizationName');
@@ -74,53 +70,52 @@ class UIJobPostingFormViewController extends HTMLElement{
 
 		//END: Hiring Organization
 		this.$incentiveCompensation = this.shadowRoot.querySelector('#incentiveCompensation');
-		this.$incentiveCompensation.addEventListener('input', e => { this._updateEvent(e)});
+		//this.$incentiveCompensation.addEventListener('input', e => { this._updateModel(e)});
 
 		this.$industry = this.shadowRoot.querySelector('#industry');
-		this.$industry.addEventListener('input', e => { this._updateEvent(e)});
+		this.$industry.addEventListener('input', e => { this._updateModel(e)});
 
 		this.$jobBenefits = this.shadowRoot.querySelector('#jobBenefits');
-		this.$jobBenefits.addEventListener('change', e => { this._updateEvent(e)});
+		//this.$jobBenefits.addEventListener('change', e => { this._updateModel(e)});
 
 		this.$jobLocation = this.shadowRoot.querySelector('#jobLocation');
-		this.$jobLocation.addEventListener('change', e => { this._updateEvent(e)});
+		this.$jobLocation.addEventListener('change', e => { this._updateModel(e)});
 
 		this.$occupationalCategory = this.shadowRoot.querySelector('#occupationalCategory');
-		this.$occupationalCategory.addEventListener('input', e => { this._updateEvent(e)});
+		this.$occupationalCategory.addEventListener('input', e => { this._updateModel(e)});
 
 		this.$qualifications = this.shadowRoot.querySelector('#qualifications');
-		this.$qualifications.addEventListener('change', e => { this._updateEvent(e)});
+		//this.$qualifications.addEventListener('change', e => { this._updateModel(e)});
 
 		this.$responsibilities = this.shadowRoot.querySelector('#responsibilities');
-		this.$responsibilities.addEventListener('change', e => { this._updateEvent(e)});
+		//this.$responsibilities.addEventListener('change', e => { this._updateModel(e)});
 
 		this.$salaryCurrency = this.shadowRoot.querySelector('#salaryCurrency');
-		this.$salaryCurrency.addEventListener('input', e => { this._updateEvent(e)});
+		this.$salaryCurrency.addEventListener('input', e => { this._updateModel(e)});
 
 		this.$skills = this.shadowRoot.querySelector('#skills');
-		this.$skills.addEventListener('change', e => { this._updateEvent(e)}, false);
+		//this.$skills.addEventListener('change', e => { this._updateModel(e)}, false);
 
 		this.$specialCommitments = this.shadowRoot.querySelector('#specialCommitments');
-		this.$specialCommitments.addEventListener('input', e => { this._updateEvent(e)});
+		this.$specialCommitments.addEventListener('input', e => { this._updateModel(e)});
 
 		this.$title = this.shadowRoot.querySelector('#title');
-		this.$title.addEventListener('input', e => { this._updateEvent(e)});
+		this.$title.addEventListener('input', e => { this._updateModel(e)});
 
 		this.$validThrough = this.shadowRoot.querySelector('#validThrough');
-		this.$validThrough.addEventListener('input', e => { this._updateEvent(e)});
+		this.$validThrough.addEventListener('input', e => { this._updateModel(e)});
 
 		this.$workHours = this.shadowRoot.querySelector('#workHours');
-		this.$workHours.addEventListener('input', e => { this._updateEvent(e)});
+		this.$workHours.addEventListener('input', e => { this._updateModel(e)});
 
 		this.$description = this.shadowRoot.querySelector('#description');
-		this.$description.addEventListener('input', e => { this._updateEvent(e)});
+		this.$description.addEventListener('input', e => { this._updateModel(e)});
 
 		this.$image = this.shadowRoot.querySelector('#image');
-		this.$image.addEventListener('input', e => { this._updateEvent(e)});
+		this.$image.addEventListener('input', e => { this._updateModel(e)});
 
 		this.setDefaults();
 		this.connected = true;
-		this._updateRender();
 	}
 
 	setDefaults(){
@@ -156,31 +151,32 @@ class UIJobPostingFormViewController extends HTMLElement{
 		}
 	}
 
+	_updateModel(e){
+		console.log(e.target)
+		this.model[e.target.id] = e.target.value;
+		this._updateEvent();
+	}
+
 	_updateEvent(e){
 		this.dispatchEvent(new CustomEvent(this.defaultEventName, {detail: this.value}))
 	}
 
-	_updateRender(){
-		if(this.$baseSalary && this.baseSalary){ this.$baseSalary.value = this.baseSalary; }
-		if(this.$datePosted && this.datePosted){ this.$datePosted.value = this.datePosted; }
-		if(this.$employmentType && this.employmentType){ this.$employmentType.value = this.employmentType; }
-
-
-
-		if(this.$industry && this.industry){ this.$industry.value = this.industry; }
-		//?
-		if(this.$jobLocation && this.jobLocation){ this.$jobLocation.value = this.jobLocation; }
-		if(this.$occupationalCategory && this.occupationalCategory){ this.$occupationalCategory.value = this.occupationalCategory; }
-		if(this.$salaryCurrency && this.salaryCurrency){ this.$salaryCurrency.value = this.salaryCurrency; }
-		if(this.$specialCommitments && this.specialCommitments){ this.$specialCommitments.value = this.specialCommitments; }
-		if(this.$title && this.title){ this.$title.value = this.title; }
-		if(this.$validThrough && this.validThrough){ this.$validThrough.value = this.validThrough; }
-		if(this.$workHours && this.workHours){ this.$workHours.value = this.workHours; }
-		//THING
-		if(this.$description && this.description){ this.$description.value = this.description; }
-		if(this.$image && this.image){ this.$image.value = this.image; }
-
-
+	//_updateRender(){
+		/*if(this.$baseSalary && this.baseSalary){ this.$baseSalary.value = this.baseSalary; }*/
+		//if(this.$datePosted && this.datePosted){ this.$datePosted.value = this.datePosted; }
+		//if(this.$employmentType && this.employmentType){ this.$employmentType.value = this.employmentType; }
+		//if(this.$industry && this.industry){ this.$industry.value = this.industry; }
+		////?
+		//if(this.$jobLocation && this.jobLocation){ this.$jobLocation.value = this.jobLocation; }
+		//if(this.$occupationalCategory && this.occupationalCategory){ this.$occupationalCategory.value = this.occupationalCategory; }
+		//if(this.$salaryCurrency && this.salaryCurrency){ this.$salaryCurrency.value = this.salaryCurrency; }
+		//if(this.$specialCommitments && this.specialCommitments){ this.$specialCommitments.value = this.specialCommitments; }
+		////if(this.$title && this.title){ this.$title.value = this.title; }
+		//if(this.$validThrough && this.validThrough){ this.$validThrough.value = this.validThrough; }
+		//if(this.$workHours && this.workHours){ this.$workHours.value = this.workHours; }
+		////THING
+		//if(this.$description && this.description){ this.$description.value = this.description; }
+		//if(this.$image && this.image){ this.$image.value = this.image; }
 		//UI-ARRAY-INPUTS HANDLE THEIR OWN UPDATING
 		//if(this.$educationRequirements && this.educationRequirements){ this.$educationRequirements.value = this.educationRequirements; }
 		//if(this.$experienceRequirements && this.experienceRequirements){ this.$experienceRequirements.value = this.experienceRequirements; }
@@ -190,7 +186,7 @@ class UIJobPostingFormViewController extends HTMLElement{
 		//if(this.$responsibilities && this.responsibilities){ this.$responsibilities.value = this.responsibilities; }
 		//if(this.$skills && this.skills){ this.$skills.value = this.skills; }
 		//if(this.$xxx && this.xxx){ this.$xxx.value = this.xxx; }
-	}
+	//}
 
 	stringifiedModel(){
 		let stringModel = JSON.stringify(JobPosting.assignedProperties(this.model));
@@ -217,7 +213,7 @@ class UIJobPostingFormViewController extends HTMLElement{
 		this.model.hiringOrganization = new Organization(value.hiringOrganization);
 		this.model.hiringOrganization.address = new PostalAddress(this.model.hiringOrganization.address);
 		//DO NOT UPDATE ATTRIBUTE HERE, OTHERWISE INFINITE LOOP HAPPENS
-		this._updateRender();
+		//this._updateRender();
 		this._updateEvent();
 	}
 
@@ -253,9 +249,12 @@ class UIJobPostingFormViewController extends HTMLElement{
 
 	//THIS IS PROB WHERE THE ISSUE IS
 	get hiringOrganization(){
-		let value = Organization.assignedProperties(this.model.hiringOrganization);
-		if(this.model.hiringOrganization.address){
-			value.address = PostalAddress.assignedProperties(this.model.hiringOrganization.address);
+		let value = JobPosting.assignedProperties(this.model);
+		if(value.hiringOrganization){
+			value.hiringOrganization = Organization.assignedProperties(value.hiringOrganization);
+			if(value.hiringOrganization.address){
+				value.hiringOrganization.address = PostalAddress.assignedProperties(value.hiringOrganization.address);
+			}
 		}
 		console.log('GET FORM HIRING ORG: ', value)
 		return value;
@@ -266,7 +265,7 @@ class UIJobPostingFormViewController extends HTMLElement{
 		if(value.address){
 			this.model.hiringOrganization.address = new PostalAddress(value.address);
 		}
-		this.setAttribute('value', this.value);
+		this.setAttribute('value', JSON.stringify(this.value));
 	}
 
 	get incentiveCompensation(){return this.model.incentiveCompensation;}
@@ -331,8 +330,9 @@ class UIJobPostingFormViewController extends HTMLElement{
 
 	get title(){return this.model.title;}
 	set title(value){
+		console.log('SETTING TITLE:', value)
 		this.model.title = value
-		this.setAttribute('value', this.stringifiedModel());
+		this.setAttribute('value', JSON.stringify(this.value));
 	}
 
 	get validThrough(){return this.model.validThrough;}

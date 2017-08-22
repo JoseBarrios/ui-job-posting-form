@@ -386,7 +386,7 @@ module.exports = Thing;
 //WEBPACK: Makes it browser friendly
 window.JobPosting = __webpack_require__(3);
 window.Organization = __webpack_require__(7);
-window.PostalAd	 = __webpack_require__(8);
+window.PostalAddress = __webpack_require__(8);
 
 
 /***/ }),

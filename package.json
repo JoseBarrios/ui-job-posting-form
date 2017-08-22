@@ -24,6 +24,10 @@
   },
   "homepage": "https://github.com/JoseBarrios/ui-job-posting-form#readme",
   "devDependencies": {
+    "@josebarrios/ui-address-input": "^0.1.5",
+    "@josebarrios/ui-array-input": "^0.1.16",
+    "@josebarrios/ui-job-posting": "^0.1.33",
+    "@josebarrios/ui-organization-card": "^0.2.6",
     "http-server": "^0.10.0",
     "mocha": "^3.4.2",
     "webpack": "^3.3.0",
@@ -32,10 +36,6 @@
   "dependencies": {
     "@josebarrios/job-posting": "^0.2.0",
     "@josebarrios/organization": "^1.1.7",
-    "@josebarrios/postal-address": "^0.1.7",
-    "@josebarrios/ui-address-input": "^0.1.5",
-    "@josebarrios/ui-array-input": "^0.1.16",
-    "@josebarrios/ui-job-posting": "^0.1.33",
-    "@josebarrios/ui-organization-card": "^0.2.6"
+    "@josebarrios/postal-address": "^0.1.7"
   }
 }
