@@ -1,0 +1,372 @@
+<!--PRODUICTION-->
+<!--<link rel='import', href='/ui-array-input/element/index.html'>-->
+<!--<link rel='import', href='/ui-address-input/element/index.html'>-->
+
+<!--TESTING-->
+<link rel='import', href='../node_modules/@josebarrios/ui-array-input/element/index.html'>
+<link rel='import', href='../node_modules/@josebarrios/ui-address-input/element/index.html'>
+
+<template id="ui-job-posting-form-view">
+	<style>
+
+		.divider {
+			width:100%;
+			margin-top:40px;
+			margin-bottom:40px;
+			border-bottom:1px solid #e8ebf2;
+		}
+
+		.form-container {
+			background-color:#fafafa;
+			padding:44px;
+		}
+
+		label {
+			font-size:1.1em;
+			color:#666666;
+			padding-bottom:0px !important;
+			font-weight:700;
+		}
+
+		legend {
+			font-size:1.1em;
+			color:#666666;
+			padding-bottom:0px !important;
+			font-weight:700;
+		}
+
+		fieldset {
+			border: 1px solid lightGray;
+			margin-top:22px;
+		}
+
+		textarea {
+			border: 1px solid #a9a9a9;
+			margin-top:5px;
+			font-size:1em;
+			width:100%;
+			height:8em !important;
+		}
+
+		select {
+			border: 1px solid #a9a9a9;
+			height: 44px !important;
+			padding:12px;
+			margin-top:5px;
+			text-transform: capitalize;
+			font-size:1em;
+			background-color:#FFF;
+			width:calc(100% - 22px) !important;
+		}
+
+		input {
+			padding:12px;
+			border: 1px solid #a9a9a9;
+			margin-top:5px;
+			font-size:1em;
+		}
+
+		button {
+			border: 0px solid transparent;
+			color:#FFF;
+			padding:20px;
+			background-color:#e39243;
+			font-weight:700;
+			font-size:1em;
+			margin-top:50px;
+			width:100%;
+			cursor:pointer;
+		}
+
+		.hidden {
+			opacity:0.2;
+		}
+
+		[class*="col-"] {
+			float: left;
+			//border: 1px solid red;
+			box-sizing: border-box;
+		}
+
+		.row {
+			padding:0px;
+			margin-right:0px;
+			margin-left:0px;
+			margin-top:30px;
+			margin-bottom:30px;
+		}
+
+		.row::after {
+			content: "";
+			clear: both;
+			display: table;
+		}
+
+		@media only screen and (min-width: 0px) {
+			.col-s-0 {width: 0%; 			height:0px;		opacity:0;}
+			.col-s-1 {width: 8.33%; 		height:auto; 	opacity:1;}
+			.col-s-2 {width: 16.66%; 	height:auto; 	opacity:1;}
+			.col-s-3 {width: 25%; 			height:auto; 	opacity:1;}
+			.col-s-4 {width: 33.33%;		height:auto;	opacity:1;}
+			.col-s-5 {width: 41.66%; 	height:auto; 	opacity:1;}
+			.col-s-6 {width: 50%; 			height:auto; 	opacity:1;}
+			.col-s-7 {width: 58.33%;		height:auto; 	opacity:1;}
+			.col-s-8 {width: 66.66%; 	height:auto; 	opacity:1;}
+			.col-s-9 {width: 75%; 			height:auto; 	opacity:1;}
+			.col-s-10 {width: 83.33%; 	height:auto; 	opacity:1;}
+			.col-s-11 {width: 91.66%; 	height:auto; 	opacity:1;}
+			.col-s-12 {width: 100%; 		height:auto; 	opacity:1;}
+
+			select {
+				margin-bottom:22px;
+				width:calc(100%) !important;
+			}
+		}
+
+		@media only screen and (min-width: 600px) {
+			.col-m-0 {width: 0%; 			height:0px;		opacity:0;}
+			.col-m-1 {width: 8.33%; 		height:auto; 	opacity:1;}
+			.col-m-2 {width: 16.66%; 	height:auto; 	opacity:1;}
+			.col-m-3 {width: 25%; 			height:auto; 	opacity:1;}
+			.col-m-4 {width: 33.33%;		height:auto;	opacity:1;}
+			.col-m-5 {width: 41.66%; 	height:auto; 	opacity:1;}
+			.col-m-6 {width: 50%; 			height:auto; 	opacity:1;}
+			.col-m-7 {width: 58.33%;		height:auto; 	opacity:1;}
+			.col-m-8 {width: 66.66%; 	height:auto; 	opacity:1;}
+			.col-m-9 {width: 75%; 			height:auto; 	opacity:1;}
+			.col-m-10 {width: 83.33%; 	height:auto; 	opacity:1;}
+			.col-m-11 {width: 91.66%; 	height:auto; 	opacity:1;}
+			.col-m-12 {width: 100%; 		height:auto; 	opacity:1;}
+
+			select {
+				margin-bottom:22px;
+				width:calc(100%) !important;
+			}
+		}
+
+		@media only screen and (min-width: 768px) {
+			.col-0 {width: 0%; 			height:0px;		opacity:0;}
+			.col-1 {width: 8.33%; 		height:auto; 	opacity:1;}
+			.col-2 {width: 16.66%; 	height:auto; 	opacity:1;}
+			.col-3 {width: 25%; 			height:auto; 	opacity:1;}
+			.col-4 {width: 33.33%;		height:auto;	opacity:1;}
+			.col-5 {width: 41.66%; 	height:auto; 	opacity:1;}
+			.col-6 {width: 50%; 			height:auto; 	opacity:1;}
+			.col-7 {width: 58.33%;		height:auto; 	opacity:1;}
+			.col-8 {width: 66.66%; 	height:auto; 	opacity:1;}
+			.col-9 {width: 75%; 			height:auto; 	opacity:1;}
+			.col-10 {width: 83.33%; 	height:auto; 	opacity:1;}
+			.col-11 {width: 91.66%; 	height:auto; 	opacity:1;}
+			.col-12 {width: 100%; 		height:auto; 	opacity:1;}
+
+			select {
+				margin-bottom:0px;
+				width:calc(100% - 22px) !important;
+			}
+		}
+
+		#hiringOrganizationAddress {
+			background-color:red;
+			z-index:1000;
+		}
+
+	</style>
+
+	<div class="form-container">
+		<input id="csrfToken" type="hidden" name="_csrf">
+
+		<!--<fieldset>-->
+			<!--<legend> Hiring Company</legend>-->
+		<div class="row">
+			<div class="col-12 col-m-12 col-s-12">
+				<label class="row">Name</label>
+				<input id="hiringOrganizationName" name="hiringOrganizationName" type="text" class="col-12 col-m-12 col-s-12">
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-12 col-m-12 col-s-12">
+				<label class="row">Address</label>
+				<ui-address-input id="hiringOrganizationAddress" name="hiringOrganizationAddress" class="col-12 col-m-12 col-s-12"></ui-address-input>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-12 col-m-12 col-s-12">
+				<label class="row">Type</label>
+				<input id="hiringOrganizationDisambiguatingDescription" name="hiringOrganizationDisambiguatingDescription" type="text" class="col-12 col-m-12 col-s-12">
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-12 col-m-12 col-s-12">
+				<label class="row">Description</label>
+				<textarea id="hiringOrganizationDescription" name="hiringOrganizationDescription" type="text" class="col-12 col-m-12 col-s-12"></textarea>
+			</div>
+		</div>
+		<!--</fieldset>-->
+
+		<div class="divider"></div>
+
+		<!--<fieldset>-->
+		<!--<legend> Job Posting</legend>-->
+		<div class="row">
+			<div class="col-12 col-m-12 col-s-12">
+				<label class="row">Job Title</label>
+				<input id="title" name="title" type="text" class="col-12 col-m-12 col-s-12">
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-12 col-m-12 col-s-12">
+				<label class="row">Location</label>
+				<ui-address-input id="jobLocation" name="jobLocation" class="col-12 col-m-12 col-s-12"></ui-address-input>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-6 col-m-12 col-s-12">
+				<label class="row">Employment Type</label>
+				<select id="employmentType" name="employmentType" class="col-12 col-m-12 col-s-12">
+					<option value="">Select One</option>
+					<option value="Full-Time">Full-time</option>
+					<option value="Part-Time">Part-time</option>
+					<option value="Contract">contract</option>
+					<option value="Temporary">temporary</option>
+					<option value="Seasonal">seasonal</option>
+					<option value="Internship">internship</option>
+				</select>
+			</div>
+
+			<div class="col-6 col-m-12 col-s-12">
+				<label class="row">Work Hours</label>
+				<input id="workHours" name="workHours" type="text" class="col-12 col-m-12 col-s-12">
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-12 col-m-12 col-s-12">
+				<label class="row">Description</label>
+				<textarea id="description" name="description" type="text"></textarea>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-12 col-m-12 col-s-12">
+				<label class="row">Skills</label>
+				<ui-array-input id="skills" name="skills" placeholder="Required Skill" class="col-12 col-m-12 col-s-12"></ui-array-input>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-12 col-m-12 col-s-12">
+				<label class="row">Qualifications</label>
+				<ui-array-input id="qualifications" name="qualifications" placeholder="Required Qualification" class="col-12 col-m-12 col-s-12"></ui-array-input>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-12 col-m-12 col-s-12">
+				<label class="row">Education Requirements</label>
+				<ui-array-input id="educationRequirements" name="educationRequirements" placeholder="Education Requirement" class="col-12 col-m-12 col-s-12"></ui-array-input>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-12 col-m-12 col-s-12">
+				<label class="row">Base Salary</label>
+				<input id="baseSalary" name="baseSalary" type="number" class="col-12 col-m-12 col-s-12"></input>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-12 col-m-12 col-s-12">
+				<label class="row">incentiveCompensation</label>
+				<ui-array-input id="incentiveCompensation" name="incentiveCompensation" placeholder="Incentive"></ui-array-input>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-12 col-m-12 col-s-12">
+				<label class="row">Experience Requirements</label>
+				<ui-array-input id="experienceRequirements" name="experienceRequirements" placeholder="Experience" class="col-12 col-m-12 col-s-12"></ui-array-input>
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="col-12 col-m-12 col-s-12">
+				<label class="row">Benefits</label>
+				<ui-array-input id="jobBenefits" name="jobBenefits" placeholder="Benefit" class="col-12 col-m-12 col-s-12"></ui-array-input>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-12 col-m-12 col-s-12">
+				<label class="row">Responsibilities</label>
+				<ui-array-input id="responsibilities" name="responsibilities" placeholder="Responsability" class="col-12 col-m-12 col-s-12"></ui-array-input>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-12 col-m-12 col-s-12">
+				<label class="row">specialCommitments</label>
+				<textarea id="specialCommitments" name="specialCommitments" type="text" class="col-12 col-m-12 col-s-12"></textarea>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-12 col-m-12 col-s-12">
+				<label class="row">Image</label>
+				<input id="image" name="image" type="text" class="col-12 col-m-12 col-s-12"></input>
+			</div>
+		</div>
+
+
+
+
+		<div class="row hidden">
+			<div class="col-12 col-m-12 col-s-12">
+				<label class="row">Date Posted</label>
+				<input id="datePosted" name="datePosted" type="date" class="col-12 col-m-12 col-s-12"></input>
+			</div>
+		</div>
+		<div class="row hidden">
+			<div class="col-12 col-m-12 col-s-12">
+				<label class="row">industry</label>
+				<input id="industry" name="industry" type="text" class="col-12 col-m-12 col-s-12"></input>
+			</div>
+		</div>
+		<div class="row hidden">
+			<div class="col-12 col-m-12 col-s-12">
+				<label class="row">Ocupational Category</label>
+				<input id="occupationalCategory" name="occupationalCategory" type="text" class="col-12 col-m-12 col-s-12"></input>
+			</div>
+		</div>
+		<div class="row hidden">
+			<div class="col-12 col-m-12 col-s-12">
+				<label class="row">salaryCurrency</label>
+				<input id="salaryCurrency" name="salaryCurrency" type="text" class="col-12 col-m-12 col-s-12"></input>
+			</div>
+		</div>
+		<div class="row hidden">
+			<div class="col-12 col-m-12 col-s-12">
+				<label class="row">validThrough</label>
+				<input id="validThrough" name="validThrough" type="date" class="col-12 col-m-12 col-s-12"></input>
+			</div>
+		</div>
+		<!--</fieldset>-->
+
+
+
+
+		<div class="row">
+			<button id="submitButton" type="submit">Publish</button>
+		</div>
+
+	</div>
+
+</template>
+
+<script type="text/javascript" src="ui-job-posting-form-data-controller.js"> </script>
+<script type="text/javascript" src="ui-job-posting-form-view-controller.js"> </script>
