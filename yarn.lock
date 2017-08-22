@@ -45,11 +45,10 @@
     lodash "^4.17.4"
 
 "@josebarrios/ui-address-input@^0.1.5":
-  version "0.1.11"
-  resolved "https://registry.npmjs.org/@josebarrios/ui-address-input/-/ui-address-input-0.1.11.tgz#49164e544f912752747044e68a5a6ef2a2e73255"
+  version "0.1.13"
+  resolved "https://registry.npmjs.org/@josebarrios/ui-address-input/-/ui-address-input-0.1.13.tgz#07ef9fcbd856b990107ff34e115576474a9826bd"
   dependencies:
     "@josebarrios/postal-address" "^0.1.7"
-    "@josebarrios/ui-organization-card" "^0.2.4"
 
 "@josebarrios/ui-array-input@^0.1.16":
   version "0.1.30"
@@ -63,7 +62,7 @@
     "@josebarrios/organization" "^1.1.7"
     "@josebarrios/postal-address" "^0.1.7"
 
-"@josebarrios/ui-organization-card@^0.2.4", "@josebarrios/ui-organization-card@^0.2.6":
+"@josebarrios/ui-organization-card@^0.2.6":
   version "0.2.6"
   resolved "https://registry.npmjs.org/@josebarrios/ui-organization-card/-/ui-organization-card-0.2.6.tgz#ac1bc66febf5c6780fad0bd7feba543f48ff2544"
   dependencies:

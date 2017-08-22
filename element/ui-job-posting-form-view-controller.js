@@ -1,6 +1,5 @@
 //TODO:
-//Location issue
-//JobBenefits is not array
+//Location issue (after setting input array)
 
 'use strict'
 const uiJobPostingFormDocument = document._currentScript || document.currentScript;;
@@ -42,7 +41,7 @@ class UIJobPostingFormViewController extends HTMLElement{
 		this.$hiringOrganizationName.addEventListener('input', e => { this._updateOrganization(e) }, false);
 
 		this.$hiringOrganizationAddress = this.shadowRoot.querySelector('#hiringOrganizationAddress');
-		//this.$hiringOrganizationAddress.addEventListener('input', e => { this._updateOrganization(e) }, false);
+		this.$hiringOrganizationAddress.addEventListener('update', e => { this._updateAddressInputs(e) }, false);
 
 		this.$hiringOrganizationDisambiguatingDescription = this.shadowRoot.querySelector('#hiringOrganizationDisambiguatingDescription');
 		this.$hiringOrganizationDisambiguatingDescription.addEventListener('input', e => { this._updateOrganization(e) }, false);
@@ -61,7 +60,7 @@ class UIJobPostingFormViewController extends HTMLElement{
 		this.$jobBenefits.addEventListener('update', e => { this._updateArrayInputs(e)}, false);
 
 		this.$jobLocation = this.shadowRoot.querySelector('#jobLocation');
-		//this.$jobLocation.addEventListener('change', e => { this._updateBasicInputs(e)});
+		this.$jobLocation.addEventListener('update', e => { this._updateAddressInputs(e)});
 
 		this.$occupationalCategory = this.shadowRoot.querySelector('#occupationalCategory');
 		this.$occupationalCategory.addEventListener('input', e => { this._updateBasicInputs(e)});
@@ -142,7 +141,21 @@ class UIJobPostingFormViewController extends HTMLElement{
 	}
 
 	_updateAddressInputs(e){
-		console.log('ADDRESS INPUT', e)
+		switch(e.target.id){
+
+			case 'hiringOrganizationAddress':
+				let value = this.hiringOrganization;
+				value.address = e.detail;
+				this.hiringOrganization = value;
+				break;
+
+			case 'jobLocation':
+				this.jobLocation = e.detail;
+				break;
+
+			default:
+				console.warn(`Target element id: '${e.target.id}' is not handled`);
+		}
 	}
 
 	_updateOrganization(e){
@@ -152,10 +165,6 @@ class UIJobPostingFormViewController extends HTMLElement{
 
 			case 'hiringOrganizationName':
 				value.name = e.target.value;
-				break;
-
-			case 'hiringOrganizationAddress':
-				value.address = e.target.value;
 				break;
 
 			case 'hiringOrganizationDisambiguatingDescription':
