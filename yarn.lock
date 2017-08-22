@@ -56,8 +56,8 @@
   resolved "https://registry.npmjs.org/@josebarrios/ui-array-input/-/ui-array-input-0.1.29.tgz#77566abf136a43221165b097e26e4413a7f03a5e"
 
 "@josebarrios/ui-job-posting@^0.1.33":
-  version "0.1.33"
-  resolved "https://registry.npmjs.org/@josebarrios/ui-job-posting/-/ui-job-posting-0.1.33.tgz#9218ee385f7bd9e7cfbd2688fff49545620121c5"
+  version "0.1.34"
+  resolved "https://registry.npmjs.org/@josebarrios/ui-job-posting/-/ui-job-posting-0.1.34.tgz#8a1a2afaa00ee195623b9d8756367efa3e722ea9"
   dependencies:
     "@josebarrios/job-posting" "^0.2.1"
     "@josebarrios/organization" "^1.1.7"

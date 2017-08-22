@@ -262,6 +262,7 @@ class UIJobPostingFormViewController extends HTMLElement{
 	}
 	set hiringOrganization(value){
 		this.model.hiringOrganization = new Organization(value);
+		console.log(value)
 		if(value.address){
 			this.model.hiringOrganization.address = new PostalAddress(value.address);
 		}
