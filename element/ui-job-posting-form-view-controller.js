@@ -23,96 +23,78 @@ class UIJobPostingFormViewController extends HTMLElement{
 	///STANDARD
 	connectedCallback() {
 		this.$baseSalary = this.shadowRoot.querySelector('#baseSalary');
-		this.$baseSalary.addEventListener('input', e => { this._updateModel(e)});
+		this.$baseSalary.addEventListener('input', e => { this._updateBasicInputs(e)});
 
 		this.$datePosted = this.shadowRoot.querySelector('#datePosted');
-		this.$datePosted.addEventListener('input', e => { this._updateModel(e)});
+		this.$datePosted.addEventListener('input', e => { this._updateBasicInputs(e)});
 
 		this.$educationRequirements = this.shadowRoot.querySelector('#educationRequirements');
-		//this.$educationRequirements.addEventListener('change', e => { this._updateModel(e)});
+		this.$educationRequirements.addEventListener('update', e => { this._updateArrayInputs(e)}, false);
 
 		this.$employmentType = this.shadowRoot.querySelector('#employmentType');
-		this.$employmentType.addEventListener('input', e => { this._updateModel(e)});
+		this.$employmentType.addEventListener('input', e => { this._updateBasicInputs(e)});
 
 		this.$experienceRequirements = this.shadowRoot.querySelector('#experienceRequirements');
-		//this.$experienceRequirements.addEventListener('change', e => { this._updateModel(e)});
+		this.$experienceRequirements.addEventListener('update', e => { this._updateArrayInputs(e)}, false);
 
 		//START: Hiring Organization
 		this.$hiringOrganizationName = this.shadowRoot.querySelector('#hiringOrganizationName');
-		this.$hiringOrganizationName.addEventListener('input', e => {
-			let value = this.hiringOrganization;
-			value.name = e.target.value;
-			this.hiringOrganization = value;
-		});
+		this.$hiringOrganizationName.addEventListener('input', e => { this._updateOrganization(e) }, false);
 
 		this.$hiringOrganizationAddress = this.shadowRoot.querySelector('#hiringOrganizationAddress');
-		this.$hiringOrganizationAddress.addEventListener('update', e => {
-			console.log('ADDRESS UPDATE')
-			let value = this.hiringOrganization;
-			value.address = e.target.value;
-			this.hiringOrganization = value;
-		});
-
+		//this.$hiringOrganizationAddress.addEventListener('input', e => { this._updateOrganization(e) }, false);
 
 		this.$hiringOrganizationDisambiguatingDescription = this.shadowRoot.querySelector('#hiringOrganizationDisambiguatingDescription');
-		this.$hiringOrganizationDisambiguatingDescription.addEventListener('input', e => {
-			let value = this.hiringOrganization;
-			value.disambiguatingDescription = e.target.value;
-			this.hiringOrganization = value;
-		});
+		this.$hiringOrganizationDisambiguatingDescription.addEventListener('input', e => { this._updateOrganization(e) }, false);
 
 		this.$hiringOrganizationDescription = this.shadowRoot.querySelector('#hiringOrganizationDescription');
-		this.$hiringOrganizationDescription.addEventListener('input', e => {
-			let value = this.hiringOrganization;
-			value.description = e.target.value;
-			this.hiringOrganization = value;
-		});
+		this.$hiringOrganizationDescription.addEventListener('input', e => { this._updateOrganization(e) }, false);
 
 		//END: Hiring Organization
 		this.$incentiveCompensation = this.shadowRoot.querySelector('#incentiveCompensation');
-		//this.$incentiveCompensation.addEventListener('input', e => { this._updateModel(e)});
+		this.$incentiveCompensation.addEventListener('update', e => { this._updateArrayInputs(e)}, false);
 
 		this.$industry = this.shadowRoot.querySelector('#industry');
-		this.$industry.addEventListener('input', e => { this._updateModel(e)});
+		this.$industry.addEventListener('input', e => { this._updateBasicInputs(e)});
 
 		this.$jobBenefits = this.shadowRoot.querySelector('#jobBenefits');
-		//this.$jobBenefits.addEventListener('change', e => { this._updateModel(e)});
+		this.$jobBenefits.addEventListener('update', e => { this._updateArrayInputs(e)}, false);
 
 		this.$jobLocation = this.shadowRoot.querySelector('#jobLocation');
-		this.$jobLocation.addEventListener('change', e => { this._updateModel(e)});
+		//this.$jobLocation.addEventListener('change', e => { this._updateBasicInputs(e)});
 
 		this.$occupationalCategory = this.shadowRoot.querySelector('#occupationalCategory');
-		this.$occupationalCategory.addEventListener('input', e => { this._updateModel(e)});
+		this.$occupationalCategory.addEventListener('input', e => { this._updateBasicInputs(e)});
 
 		this.$qualifications = this.shadowRoot.querySelector('#qualifications');
-		//this.$qualifications.addEventListener('change', e => { this._updateModel(e)});
+		this.$qualifications.addEventListener('update', e => { this._updateArrayInputs(e)}, false);
 
 		this.$responsibilities = this.shadowRoot.querySelector('#responsibilities');
-		//this.$responsibilities.addEventListener('change', e => { this._updateModel(e)});
+		this.$responsibilities.addEventListener('update', e => { this._updateArrayInputs(e)}, false);
 
 		this.$salaryCurrency = this.shadowRoot.querySelector('#salaryCurrency');
-		this.$salaryCurrency.addEventListener('input', e => { this._updateModel(e)});
+		this.$salaryCurrency.addEventListener('input', e => { this._updateBasicInputs(e)});
 
 		this.$skills = this.shadowRoot.querySelector('#skills');
-		//this.$skills.addEventListener('change', e => { this._updateModel(e)}, false);
+		this.$skills.addEventListener('update', e => { this._updateArrayInputs(e)}, false);
 
 		this.$specialCommitments = this.shadowRoot.querySelector('#specialCommitments');
-		this.$specialCommitments.addEventListener('input', e => { this._updateModel(e)});
+		this.$specialCommitments.addEventListener('input', e => { this._updateBasicInputs(e)});
 
 		this.$title = this.shadowRoot.querySelector('#title');
-		this.$title.addEventListener('input', e => { this._updateModel(e)});
+		this.$title.addEventListener('input', e => { this._updateBasicInputs(e)});
 
 		this.$validThrough = this.shadowRoot.querySelector('#validThrough');
-		this.$validThrough.addEventListener('input', e => { this._updateModel(e)});
+		this.$validThrough.addEventListener('input', e => { this._updateBasicInputs(e)});
 
 		this.$workHours = this.shadowRoot.querySelector('#workHours');
-		this.$workHours.addEventListener('input', e => { this._updateModel(e)});
+		this.$workHours.addEventListener('input', e => { this._updateBasicInputs(e)});
 
 		this.$description = this.shadowRoot.querySelector('#description');
-		this.$description.addEventListener('input', e => { this._updateModel(e)});
+		this.$description.addEventListener('input', e => { this._updateBasicInputs(e)});
 
 		this.$image = this.shadowRoot.querySelector('#image');
-		this.$image.addEventListener('input', e => { this._updateModel(e)});
+		this.$image.addEventListener('input', e => { this._updateBasicInputs(e)});
 
 		this.setDefaults();
 		this.connected = true;
@@ -151,10 +133,54 @@ class UIJobPostingFormViewController extends HTMLElement{
 		}
 	}
 
-	_updateModel(e){
-		console.log(e.target)
-		this.model[e.target.id] = e.target.value;
-		this._updateEvent();
+	_updateBasicInputs(e){
+		this[e.target.id] = e.target.value;
+	}
+
+	_updateArrayInputs(e){
+		this[e.target.id] = e.detail;
+	}
+
+	_updateAddressInputs(e){
+		console.log('ADDRESS INPUT', e)
+	}
+
+	_updateOrganization(e){
+		let value = this.hiringOrganization;
+
+		switch(e.target.id){
+
+			case 'hiringOrganizationName':
+				value.name = e.target.value;
+				break;
+
+			case 'hiringOrganizationAddress':
+				value.address = e.target.value;
+				break;
+
+			case 'hiringOrganizationDisambiguatingDescription':
+				value.disambiguatingDescription = e.target.value;
+				break;
+
+			case 'hiringOrganizationDescription':
+				value.description = e.target.value;
+				break;
+
+			case 'hiringOrganizationImage':
+				//TODO
+				//value.image = e.target.value;
+				break;
+
+			default:
+				console.warn(`Target element id: '${e.target.id}' is not handled`);
+
+		}
+		this.hiringOrganization = value;
+	}
+
+
+	_updateAttribute(){
+		this.setAttribute('value', JSON.stringify(this.value));
 	}
 
 	_updateEvent(e){
@@ -188,18 +214,12 @@ class UIJobPostingFormViewController extends HTMLElement{
 		//if(this.$xxx && this.xxx){ this.$xxx.value = this.xxx; }
 	//}
 
-	stringifiedModel(){
-		let stringModel = JSON.stringify(JobPosting.assignedProperties(this.model));
-		return stringModel;
-	}
-
 	get shadowRoot(){return this._shadowRoot;}
 	set shadowRoot(value){ this._shadowRoot = value}
 
     //MASTER
 	get value(){
-		let value = {}
-		value = JobPosting.assignedProperties(this.model)
+		let value = JobPosting.assignedProperties(this.model)
 		if(value.hiringOrganization){
 			value.hiringOrganization = Organization.assignedProperties(this.model.hiringOrganization)
 			if(value.hiringOrganization.address){
@@ -210,8 +230,12 @@ class UIJobPostingFormViewController extends HTMLElement{
 	}
 	set value(value){
 		this.model = new JobPosting(value);
-		this.model.hiringOrganization = new Organization(value.hiringOrganization);
-		this.model.hiringOrganization.address = new PostalAddress(this.model.hiringOrganization.address);
+		if(value.hiringOrganization){
+			this.model.hiringOrganization = new Organization(value.hiringOrganization);
+			if(value.hiringOrganization.address){
+				this.model.hiringOrganization.address = new PostalAddress(this.model.hiringOrganization.address);
+			}
+		}
 		//DO NOT UPDATE ATTRIBUTE HERE, OTHERWISE INFINITE LOOP HAPPENS
 		//this._updateRender();
 		this._updateEvent();
@@ -220,31 +244,31 @@ class UIJobPostingFormViewController extends HTMLElement{
 	get baseSalary(){return this.model.baseSalary;}
 	set baseSalary(value){
 		this.model.baseSalary = value
-		this.setAttribute('value', this.stringifiedModel());
+		this._updateAttribute();
 	}
 
 	get datePosted(){return this.model.datePosted;}
 	set datePosted(value){
 		this.model.datePosted = value
-		this.setAttribute('value', this.stringifiedModel());
+		this._updateAttribute();
 	}
 
 	get educationRequirements(){return this.model.educationRequirements;}
 	set educationRequirements(value){
 		this.model.educationRequirements = value
-		this.setAttribute('value', this.stringifiedModel());
+		this._updateAttribute();
 	}
 
 	get employmentType(){return this.model.employmentType;}
 	set employmentType(value){
 		this.model.employmentType = value
-		this.setAttribute('value', this.stringifiedModel());
+		this._updateAttribute();
 	}
 
 	get experienceRequirements(){return this.model.experienceRequirements;}
 	set experienceRequirements(value){
 		this.model.experienceRequirements = value
-		this.setAttribute('value', this.stringifiedModel());
+		this._updateAttribute();
 	}
 
 	//THIS IS PROB WHERE THE ISSUE IS
@@ -256,161 +280,159 @@ class UIJobPostingFormViewController extends HTMLElement{
 				value.hiringOrganization.address = PostalAddress.assignedProperties(value.hiringOrganization.address);
 			}
 		}
-		console.log('GET FORM HIRING ORG: ', value)
 		return value;
 	}
 	set hiringOrganization(value){
 		this.model.hiringOrganization = new Organization(value);
-		console.log(value)
 		if(value.address){
 			this.model.hiringOrganization.address = new PostalAddress(value.address);
 		}
-		this.setAttribute('value', JSON.stringify(this.value));
+		this._updateAttribute();
 	}
 
 	get incentiveCompensation(){return this.model.incentiveCompensation;}
 	set incentiveCompensation(value){
 		this.model.incentiveCompensation = value
-		this.setAttribute('value', this.stringifiedModel());
+		this._updateAttribute();
 	}
 
 	get industry(){return this.model.industry;}
 	set industry(value){
 		this.model.industry = value
-		this.setAttribute('value', this.stringifiedModel());
+		this._updateAttribute();
 	}
 
 	get jobBenefits(){return this.model.jobBenefits;}
 	set jobBenefits(value){
 		this.model.jobBenefits = value
-		this.setAttribute('value', this.stringifiedModel());
+		this._updateAttribute();
 	}
 
 	get jobLocation(){return this.model.jobLocation;}
 	set jobLocation(value){
 		this.model.jobLocation = value
-		this.setAttribute('value', this.stringifiedModel());
+		this._updateAttribute();
 	}
 
 	get occupationalCategory(){return this.model.occupationalCategory;}
 	set occupationalCategory(value){
 		this.model.occupationalCategory = value
-		this.setAttribute('value', this.stringifiedModel());
+		this._updateAttribute();
 	}
 
 	get qualifications(){return this.model.qualifications;}
 	set qualifications(value){
 		this.model.qualifications = value
-		this.setAttribute('value', this.stringifiedModel());
+		this._updateAttribute();
 	}
 
 	get responsibilities(){return this.model.responsibilities;}
 	set responsibilities(value){
 		this.model.responsibilities = value
-		this.setAttribute('value', this.stringifiedModel());
+		this._updateAttribute();
 	}
 
 	get salaryCurrency(){return this.model.salaryCurrency;}
 	set salaryCurrency(value){
 		this.model.salaryCurrency = value
-		this.setAttribute('value', this.stringifiedModel());
+		this._updateAttribute();
 	}
 
 	get skills(){return this.model.skills;}
 	set skills(value){
 		this.model.skills = value
-		this.setAttribute('value', this.stringifiedModel());
+		this._updateAttribute();
 	}
 
 	get specialCommitments(){return this.model.specialCommitments;}
 	set specialCommitments(value){
 		this.model.specialCommitments = value
-		this.setAttribute('value', this.stringifiedModel());
+		this._updateAttribute();
 	}
 
 	get title(){return this.model.title;}
 	set title(value){
-		console.log('SETTING TITLE:', value)
 		this.model.title = value
-		this.setAttribute('value', JSON.stringify(this.value));
+		this._updateAttribute();
 	}
 
 	get validThrough(){return this.model.validThrough;}
 	set validThrough(value){
 		this.model.validThrough = value
-		this.setAttribute('value', this.stringifiedModel());
+		this._updateAttribute();
 	}
 
 	get workHours(){return this.model.workHours;}
 	set workHours(value){
 		this.model.workHours = value
-		this.setAttribute('value', this.stringifiedModel());
+		this._updateAttribute();
 	}
 
 	get additionalType(){return this.model.additionalType;}
 	set additionalType(value){
 		this.model.additionalType = value
-		this.setAttribute('value', this.stringifiedModel());
+		this._updateAttribute();
 	}
 
 	get alternateName(){return this.model.alternateName;}
 	set alternateName(value){
 		this.model.alternateName = value
-		this.setAttribute('value', this.stringifiedModel());
+		this._updateAttribute();
 	}
 
 	get description(){return this.model.description;}
 	set description(value){
 		this.model.description = value
-		this.setAttribute('value', this.stringifiedModel());
+		this._updateAttribute();
 	}
 
 	get disambiguatingDescription(){return this.model.disambiguatingDescription;}
 	set disambiguatingDescription(value){
 		this.model.disambiguatingDescription = value
-		this.setAttribute('value', this.stringifiedModel());
+		this._updateAttribute();
 	}
 
 	get identifier(){return this.model.identifier;}
 	set identifier(value){
 		this.model.identifier = value
-		this.setAttribute('value', this.stringifiedModel());
+		this._updateAttribute();
 	}
 
 	get image(){return this.model.image;}
 	set image(value){
 		this.model.image = value
-		this.setAttribute('value', this.stringifiedModel());
+		this._updateAttribute();
 	}
 
 	get mainEntityOfPage(){return this.model.mainEntityOfPage;}
 	set mainEntityOfPage(value){
 		this.model.mainEntityOfPage = value
-		this.setAttribute('value', this.stringifiedModel());
+		this._updateAttribute();
 	}
 
 	get name(){return this.model.name;}
 	set name(value){
 		this.model.name = value
-		this.setAttribute('value', this.stringifiedModel());
+		this._updateAttribute();
 	}
 
 	get potentialAction(){return this.model.potentialAction;}
 	set potentialAction(value){
 		this.model.potentialAction = value
-		this.setAttribute('value', this.stringifiedModel());
+		this._updateAttribute();
 	}
 
 	get sameAs(){return this.model.sameAs;}
 	set sameAs(value){
 		this.model.sameAs = value
-		this.setAttribute('value', this.stringifiedModel());
+		this._updateAttribute();
 	}
 
 	get url(){return this.model.url;}
 	set url(value){
 		this.model.url = value
 		this.setAttribute('value', this.stringifiedModel());
+		this._updateAttribute();
 	}
 
 	disconnectedCallback() {

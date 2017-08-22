@@ -52,8 +52,8 @@
     "@josebarrios/ui-organization-card" "^0.2.4"
 
 "@josebarrios/ui-array-input@^0.1.16":
-  version "0.1.29"
-  resolved "https://registry.npmjs.org/@josebarrios/ui-array-input/-/ui-array-input-0.1.29.tgz#77566abf136a43221165b097e26e4413a7f03a5e"
+  version "0.1.30"
+  resolved "https://registry.npmjs.org/@josebarrios/ui-array-input/-/ui-array-input-0.1.30.tgz#d9451f6d4ae1c427dd0f768d9332f2d08eed7f72"
 
 "@josebarrios/ui-job-posting@^0.1.33":
   version "0.1.35"
