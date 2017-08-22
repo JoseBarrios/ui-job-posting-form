@@ -251,11 +251,13 @@ class UIJobPostingFormViewController extends HTMLElement{
 		this.setAttribute('value', this.stringifiedModel());
 	}
 
+	//THIS IS PROB WHERE THE ISSUE IS
 	get hiringOrganization(){
 		let value = Organization.assignedProperties(this.model.hiringOrganization);
 		if(this.model.hiringOrganization.address){
 			value.address = PostalAddress.assignedProperties(this.model.hiringOrganization.address);
 		}
+		console.log('GET FORM HIRING ORG: ', value)
 		return value;
 	}
 	set hiringOrganization(value){
@@ -263,7 +265,7 @@ class UIJobPostingFormViewController extends HTMLElement{
 		if(value.address){
 			this.model.hiringOrganization.address = new PostalAddress(value.address);
 		}
-		this.setAttribute('value', JSON.stringify(this.value));
+		this.setAttribute('value', this.value);
 	}
 
 	get incentiveCompensation(){return this.model.incentiveCompensation;}
