@@ -82,24 +82,48 @@ class UIJobPostingFormViewController extends HTMLElement{
 
 		this.$title = this.shadowRoot.querySelector('#title');
 		this.$title.addEventListener('input', e => { this._updateBasicInputs(e)});
+		this.$title.addEventListener('focus', e => { this._updateBasicInputs(e)});
+		this.$title.addEventListener('focus', e => { this._updateBasicInputs(e)});
 
 		this.$validThrough = this.shadowRoot.querySelector('#validThrough');
 		this.$validThrough.addEventListener('input', e => { this._updateBasicInputs(e)});
 
 		this.$workHours = this.shadowRoot.querySelector('#workHours');
 		this.$workHours.addEventListener('input', e => { this._updateBasicInputs(e)});
+		this.$workHours.addEventListener('blur', e => { this._updateBasicInputs(e)});
 
 		this.$description = this.shadowRoot.querySelector('#description');
 		this.$description.addEventListener('input', e => { this._updateBasicInputs(e)});
 
-		this.$image = this.shadowRoot.querySelector('#image');
-		this.$image.addEventListener('input', e => { this._updateBasicInputs(e)});
+		this.$hiringOrganizationLogo = this.shadowRoot.querySelector('#hiringOrganizationLogo');
+		this.$hiringOrganizationLogo.addEventListener('update', e => { this._updateOrganization(e) });
+
+		//this.$image = this.shadowRoot.querySelector('#image');
+		//this.$image.addEventListener('update', e => { console.log('UI-IMAGE-INPUT SRC', e.detail) });
+
+		//UI
+		this.$hiringOrganizationContainer = this.shadowRoot.querySelector('#hiringOrganizationContainer');
+		this.$jobPostingContainer = this.shadowRoot.querySelector('#jobPostingContainer');
+
+		this.$nextButton = this.shadowRoot.querySelector('#nextButton');
+		this.$nextButton.addEventListener('click', e => {
+					this.$hiringOrganizationContainer.hidden = true;
+					this.$jobPostingContainer.hidden = false;
+		})
+
+		this.$finishButton = this.shadowRoot.querySelector('#finishButton');
+		this.$finishButton.addEventListener('click', e => {
+					this.$hiringOrganizationContainer.hidden = true;
+					this.$jobPostingContainer.hidden = true;
+		})
+
 
 		this.setDefaults();
 		this.connected = true;
 	}
 
 	setDefaults(){
+		this.salaryCurrency = 'USD';
 		//DEFAULT POSTING DATE
 		let date = new Date();
 		let year = `${ date.getUTCFullYear() }`;
@@ -117,8 +141,6 @@ class UIJobPostingFormViewController extends HTMLElement{
 		day = `${ date.getDate() < 10? "0"+date.getDate() : date.getDate() }`;
 		let expires = `${year}-${month}-${day}`;
 		this.validThrough = expires;
-
-		this.salaryCurrency = 'USD';
 	}
 
 	//Parse and pass attribute to property (property as source of truth);
@@ -137,22 +159,21 @@ class UIJobPostingFormViewController extends HTMLElement{
 	}
 
 	_updateArrayInputs(e){
-		this[e.target.id] = e.detail;
+		if(e.detail !== "" && e.detail[0] !== ""){
+			this[e.target.id] = e.detail;
+		}
 	}
 
 	_updateAddressInputs(e){
 		switch(e.target.id){
-
 			case 'hiringOrganizationAddress':
 				let value = this.hiringOrganization;
 				value.address = e.detail;
 				this.hiringOrganization = value;
 				break;
-
 			case 'jobLocation':
 				this.jobLocation = e.detail;
 				break;
-
 			default:
 				console.warn(`Target element id: '${e.target.id}' is not handled`);
 		}
@@ -162,66 +183,33 @@ class UIJobPostingFormViewController extends HTMLElement{
 		let value = this.hiringOrganization;
 
 		switch(e.target.id){
-
 			case 'hiringOrganizationName':
 				value.name = e.target.value;
 				break;
-
 			case 'hiringOrganizationDisambiguatingDescription':
 				value.disambiguatingDescription = e.target.value;
 				break;
-
 			case 'hiringOrganizationDescription':
 				value.description = e.target.value;
 				break;
-
-			case 'hiringOrganizationImage':
-				//TODO
-				//value.image = e.target.value;
+			case 'hiringOrganizationLogo':
+				value.image = e.detail;
 				break;
-
 			default:
 				console.warn(`Target element id: '${e.target.id}' is not handled`);
-
 		}
 		this.hiringOrganization = value;
 	}
-
 
 	_updateAttribute(){
 		this.setAttribute('value', JSON.stringify(this.value));
 	}
 
 	_updateEvent(e){
-		this.dispatchEvent(new CustomEvent(this.defaultEventName, {detail: this.value}))
+		this.dispatchEvent(new CustomEvent('update', {detail: this.value}))
 	}
 
-	//_updateRender(){
-		/*if(this.$baseSalary && this.baseSalary){ this.$baseSalary.value = this.baseSalary; }*/
-		//if(this.$datePosted && this.datePosted){ this.$datePosted.value = this.datePosted; }
-		//if(this.$employmentType && this.employmentType){ this.$employmentType.value = this.employmentType; }
-		//if(this.$industry && this.industry){ this.$industry.value = this.industry; }
-		////?
-		//if(this.$jobLocation && this.jobLocation){ this.$jobLocation.value = this.jobLocation; }
-		//if(this.$occupationalCategory && this.occupationalCategory){ this.$occupationalCategory.value = this.occupationalCategory; }
-		//if(this.$salaryCurrency && this.salaryCurrency){ this.$salaryCurrency.value = this.salaryCurrency; }
-		//if(this.$specialCommitments && this.specialCommitments){ this.$specialCommitments.value = this.specialCommitments; }
-		////if(this.$title && this.title){ this.$title.value = this.title; }
-		//if(this.$validThrough && this.validThrough){ this.$validThrough.value = this.validThrough; }
-		//if(this.$workHours && this.workHours){ this.$workHours.value = this.workHours; }
-		////THING
-		//if(this.$description && this.description){ this.$description.value = this.description; }
-		//if(this.$image && this.image){ this.$image.value = this.image; }
-		//UI-ARRAY-INPUTS HANDLE THEIR OWN UPDATING
-		//if(this.$educationRequirements && this.educationRequirements){ this.$educationRequirements.value = this.educationRequirements; }
-		//if(this.$experienceRequirements && this.experienceRequirements){ this.$experienceRequirements.value = this.experienceRequirements; }
-		//if(this.$incentiveCompensation && this.incentiveCompensation){ this.$incentiveCompensation.value = this.incentiveCompensation; }
-		//if(this.$jobBenefits && this.jobBenefits){ this.$jobBenefits.value = this.jobBenefits; }
-		//if(this.$qualifications && this.qualifications){ this.$qualifications.value = this.qualifications; }
-		//if(this.$responsibilities && this.responsibilities){ this.$responsibilities.value = this.responsibilities; }
-		//if(this.$skills && this.skills){ this.$skills.value = this.skills; }
-		//if(this.$xxx && this.xxx){ this.$xxx.value = this.xxx; }
-	//}
+	_updateRender(){ }
 
 	get shadowRoot(){return this._shadowRoot;}
 	set shadowRoot(value){ this._shadowRoot = value}
@@ -246,13 +234,12 @@ class UIJobPostingFormViewController extends HTMLElement{
 			}
 		}
 		//DO NOT UPDATE ATTRIBUTE HERE, OTHERWISE INFINITE LOOP HAPPENS
-		//this._updateRender();
 		this._updateEvent();
 	}
 
 	get baseSalary(){return this.model.baseSalary;}
 	set baseSalary(value){
-		this.model.baseSalary = value
+		this.model.industry = value === ''? ' ': value;
 		this._updateAttribute();
 	}
 
@@ -291,11 +278,10 @@ class UIJobPostingFormViewController extends HTMLElement{
 		}
 		return value;
 	}
+
 	set hiringOrganization(value){
 		this.model.hiringOrganization = new Organization(value);
-		if(value.address){
-			this.model.hiringOrganization.address = new PostalAddress(value.address);
-		}
+		if(value.address){ this.model.hiringOrganization.address = new PostalAddress(value.address); }
 		this._updateAttribute();
 	}
 
@@ -307,7 +293,7 @@ class UIJobPostingFormViewController extends HTMLElement{
 
 	get industry(){return this.model.industry;}
 	set industry(value){
-		this.model.industry = value
+		this.model.industry = value === ''? ' ': value;
 		this._updateAttribute();
 	}
 
@@ -325,7 +311,7 @@ class UIJobPostingFormViewController extends HTMLElement{
 
 	get occupationalCategory(){return this.model.occupationalCategory;}
 	set occupationalCategory(value){
-		this.model.occupationalCategory = value
+		this.model.occupationalCategory = value === ''? ' ': value;
 		this._updateAttribute();
 	}
 
@@ -343,7 +329,7 @@ class UIJobPostingFormViewController extends HTMLElement{
 
 	get salaryCurrency(){return this.model.salaryCurrency;}
 	set salaryCurrency(value){
-		this.model.salaryCurrency = value
+		this.model.salaryCurrency = value === ''? ' ': value;
 		this._updateAttribute();
 	}
 
@@ -355,13 +341,13 @@ class UIJobPostingFormViewController extends HTMLElement{
 
 	get specialCommitments(){return this.model.specialCommitments;}
 	set specialCommitments(value){
-		this.model.specialCommitments = value
+		this.model.specialCommitments = value === ''? ' ': value;
 		this._updateAttribute();
 	}
 
 	get title(){return this.model.title;}
 	set title(value){
-		this.model.title = value
+		this.model.title = value === ''? ' ': value;
 		this._updateAttribute();
 	}
 
@@ -373,37 +359,37 @@ class UIJobPostingFormViewController extends HTMLElement{
 
 	get workHours(){return this.model.workHours;}
 	set workHours(value){
-		this.model.workHours = value
+		this.model.workHours = value === ''? ' ': value;
 		this._updateAttribute();
 	}
 
 	get additionalType(){return this.model.additionalType;}
 	set additionalType(value){
-		this.model.additionalType = value
+		this.model.additionalType = value === ''? ' ': value;
 		this._updateAttribute();
 	}
 
 	get alternateName(){return this.model.alternateName;}
 	set alternateName(value){
-		this.model.alternateName = value
+		this.model.alternateName = value === ''? ' ': value;
 		this._updateAttribute();
 	}
 
 	get description(){return this.model.description;}
 	set description(value){
-		this.model.description = value
+		this.model.description = value === ''? ' ': value;
 		this._updateAttribute();
 	}
 
 	get disambiguatingDescription(){return this.model.disambiguatingDescription;}
 	set disambiguatingDescription(value){
-		this.model.disambiguatingDescription = value
+		this.model.disambiguatingDescription = value === ''? ' ': value;
 		this._updateAttribute();
 	}
 
 	get identifier(){return this.model.identifier;}
 	set identifier(value){
-		this.model.identifier = value
+		this.model.identifier = value === ''? ' ': value;
 		this._updateAttribute();
 	}
 

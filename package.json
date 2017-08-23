@@ -36,6 +36,7 @@
   "dependencies": {
     "@josebarrios/job-posting": "^0.2.0",
     "@josebarrios/organization": "^1.1.7",
-    "@josebarrios/postal-address": "^0.1.7"
+    "@josebarrios/postal-address": "^0.1.7",
+    "@josebarrios/ui-image-input": "^0.1.4"
   }
 }

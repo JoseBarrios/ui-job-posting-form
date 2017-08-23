@@ -429,6 +429,7 @@ class JobPosting extends Intangible {
 
   get educationRequirements(){ return this.computed.educationRequirements; }
   set educationRequirements(value){
+		if(!value) return;
     if(!this.computed.educationRequirements){ this.computed.educationRequirements = []; }
     if(Intangible.isArray(value)){ this.computed.educationRequirements = value; }
     else if(Intangible.isString(value)){ this.computed.educationRequirements = [value]; }
@@ -439,6 +440,7 @@ class JobPosting extends Intangible {
 
   get experienceRequirements(){ return this.computed.experienceRequirements; }
   set experienceRequirements(value){
+		if(!value) return;
     if(Intangible.isArray(value)){ this.computed.experienceRequirements = value; }
     else if(Intangible.isString(value)) { this.computed.experienceRequirements = [value]; }
     else if(!this.computed.experienceRequirements){ this.computed.experienceRequirements = []; }
@@ -449,6 +451,7 @@ class JobPosting extends Intangible {
 
   get incentiveCompensation(){ return this.computed.incentiveCompensation; }
 	set incentiveCompensation(value){
+		if(!value) return;
 		if(!this.computed.incentiveCompensation){ this.computed.incentiveCompensation = []; }
     if(Intangible.isArray(value)){ this.computed.incentiveCompensation = value; }
     else if(Intangible.isString(value)) { this.computed.incentiveCompensation = [value]; }
@@ -459,6 +462,7 @@ class JobPosting extends Intangible {
 
   get jobBenefits(){ return this.computed.jobBenefits; }
 	set jobBenefits(value){
+		if(!value) return;
 		if(!this.computed.jobBenefits){ this.computed.jobBenefits = []; }
     if(Intangible.isArray(value)){ this.computed.jobBenefits = value; }
     else if(Intangible.isString(value)) { this.computed.jobBenefits = [value]; }
@@ -472,6 +476,7 @@ class JobPosting extends Intangible {
 
   get qualifications(){ return this.computed.qualifications; }
   set qualifications(value){
+		if(!value) return;
     if(!this.computed.qualifications){ this.computed.qualifications = []; }
     if(Intangible.isArray(value)){ this.computed.qualifications = value; }
     else if(Intangible.isString(value)) { this.computed.qualifications = [value]; }
@@ -479,6 +484,7 @@ class JobPosting extends Intangible {
 
   get responsibilities(){ return this.computed.responsibilities; }
   set responsibilities(value){
+		if(!value) return;
     if(!this.computed.responsibilities){ this.computed.responsibilities = []; }
     if(Intangible.isArray(value)){ this.computed.responsibilities = value; }
     else if(Intangible.isString(value)) { this.computed.responsibilities = [value]; }
@@ -489,6 +495,7 @@ class JobPosting extends Intangible {
 
   get skills(){ return this.computed.skills; }
 	set skills(value){
+		if(!value) return;
 		if(!this.computed.skills){ this.computed.skills = []; }
     if(Intangible.isArray(value)){ this.computed.skills = value; }
     else if(Intangible.isString(value)) { this.computed.skills = [value]; }

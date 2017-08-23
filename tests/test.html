@@ -1,29 +1,65 @@
+<meta name=viewport content="width=device-width, initial-scale=1">
+
 <script src='https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.1/webcomponents-lite.js'></script>
 <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCYa2I7Yl5A1pz1QptlJsgxEHy00xGDkzc&libraries=places'></script>
 
-<meta name=viewport content="width=device-width, initial-scale=1">
 <link rel='import' href='../element/index.html'>
 <link rel='import' href='../node_modules/@josebarrios/ui-address-input/element/index.html'>
+<link rel='import' href='../node_modules/@josebarrios/ui-image-input/element/index.html'>
 <link rel='import' href='../node_modules/@josebarrios/ui-array-input/element/index.html'>
 <link rel='import' href='../node_modules/@josebarrios/ui-organization-card/element/index.html'>
 <link rel='import' href='../node_modules/@josebarrios/ui-job-posting/element/index.html'>
 
-<body style="background-color:#e6e6e6;width:100%; padding:0px; margin:0px">
-	<div style="width:40%;position:absolute;height:100%; overflow:scroll;border-right:1px solid #a9a9a9;">
+<style>
+	body {
+		background-color:#e6e6e6;
+		width:100%;
+		padding:0px;
+		margin:0px;
+	}
+	.left-pannel {
+		width:40%;
+		height:100%;
+		position:fixed;
+		overflow:scroll;
+		border-right:1px solid #a9a9a9;
+		background-color:#fafafa;
+	}
+	.right-pannel {
+		height:100%;
+		overflow:scroll;
+		margin-left:calc(40% + 22px);
+		padding-right:22px;
+		z-index:1;
+	}
+
+	.job-posting-container {
+		width:88%;
+		padding:6%;
+		padding-top:7%;
+	}
+</style>
+
+<body>
+	<div class="left-pannel">
 		<ui-job-posting-form></ui-job-posting-form>
 	</div>
-	<div style="height:100%;overflow:scroll;margin-left:calc(40% + 22px);padding-right:22px;z-index:1;">
-		<ui-job-posting></ui-job-posting>
+	<div class="right-pannel">
+		<div class="job-posting-container">
+			<ui-job-posting></ui-job-posting>
+		</div>
 	</div>
 </body>
-<script>
 
+<script>
 const $form = document.querySelector('ui-job-posting-form');
 const $jobPosting = document.querySelector('ui-job-posting');
 
 //FORMAT SETTING OF FORM VARIABLES, AND RETRIVING IS WRONG
 $form.addEventListener('update', function(e){
-	console.log('UPDATED', e.detail);
-	$jobPosting.value = e.detail;
+	console.log('UPDATED FORM', e.detail);
+	//$jobPosting.value = e.detail;//NOT SUPPORTED IN SAFARI
+	$jobPosting.setAttribute('value', JSON.stringify(e.detail));
+	//window.scrollTo(0, 150)
 })
 </script>
