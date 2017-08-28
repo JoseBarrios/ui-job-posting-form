@@ -7,8 +7,13 @@
 <link rel='import' href='../node_modules/@josebarrios/ui-address-input/element/index.html'>
 <link rel='import' href='../node_modules/@josebarrios/ui-image-input/element/index.html'>
 <link rel='import' href='../node_modules/@josebarrios/ui-array-input/element/index.html'>
+
 <link rel='import' href='../node_modules/@josebarrios/ui-organization-card/element/index.html'>
 <link rel='import' href='../node_modules/@josebarrios/ui-job-posting/element/index.html'>
+<link rel='import' href='../node_modules/@josebarrios/ui-job-posting-card/element/index.html'>
+<link rel='import' href='../bower_components/view-json/view-json.html'>
+
+<title> ui-job-posting-form </title>
 
 <style>
   body {
@@ -27,7 +32,7 @@
 
   .left-pannel {
     width:40%;
-    height:calc(100% - 10vh);
+    height:calc(100%);
     position:fixed;
     overflow:scroll;
     border-right:1px solid #a9a9a9;
@@ -35,9 +40,10 @@
   }
 
   .right-pannel {
-    height:calc(100% - 10vh);
+    height:calc(100%);
     overflow:scroll;
     margin-left:calc(40%);
+		background-color:#282c34;
   }
 
   .job-posting-container {
@@ -45,31 +51,53 @@
     width:calc(100% - 88px);
   }
 
+	view-json {
+		width:100%;
+		height:100vh;
+		padding:0px;
+		margin:0px;
+
+	}
+
 </style>
 
 <body>
 
-	<div class="header"> </div>
+	<!--<div class="header"> </div>-->
 
   <div class="left-pannel">
     <ui-job-posting-form></ui-job-posting-form>
   </div>
   <div class="right-pannel">
-    <div class="job-posting-container">
-      <ui-job-posting></ui-job-posting>
-    </div>
+		<div class="job-posting-container">
+			<!--<view-json> {} </view-json>-->
+			<ui-job-posting-card></ui-job-posting-card>
+			<ui-job-posting></ui-job-posting>
+		</div>
   </div>
 </body>
 
 <script>
 const $form = document.querySelector('ui-job-posting-form');
+//const $viewJSON = document.querySelector('view-json');
+const $jobPostingCard = document.querySelector('ui-job-posting-card');
 const $jobPosting = document.querySelector('ui-job-posting');
+
 
 //FORMAT SETTING OF FORM VARIABLES, AND RETRIVING IS WRONG
 $form.addEventListener('update', function(e){
-  console.log('UPDATED FORM', e.detail);
-  //$jobPosting.value = e.detail;//NOT SUPPORTED IN SAFARI
+	console.log(e.detail)
+  //$viewJSON.innerHTML = JSON.stringify(e.detail);
   $jobPosting.setAttribute('value', JSON.stringify(e.detail));
-  //window.scrollTo(0, 150)
+  $jobPostingCard.setAttribute('value', JSON.stringify(e.detail));
 })
+
+//$form.addEventListener('finish', function(e){
+	//console.log('FINISH', e.detail)
+  //$jobPosting.setAttribute('value', JSON.stringify(e.detail));
+  //$jobPostingCard.setAttribute('value', JSON.stringify(e.detail));
+  //$viewJSON.innerHTML = JSON.stringify(e.detail);
+//})
+
+
 </script>

@@ -3,6 +3,13 @@
 <template id="ui-job-posting-form-view">
 	<style>
 
+		.back-button {
+			margin-bottom:50px;
+			position:absolute;
+			color:#fa5c74;
+			cursor:pointer;
+		}
+
 		ui-array-input {
 			//background-color:#e6e6e6;
 			margin-bottom:22px;
@@ -20,7 +27,6 @@
 			padding-left:44px;
 			padding-right:44px;
 			padding-top:44px;
-			height:100vh;
 		}
 
 		label {
@@ -94,11 +100,12 @@
 			width:100%;
 			cursor:pointer;
 
+			background-color:#fa5c74;
+			color:#fff;
 		}
 
 		.big-button:hover {
 			border: 1px solid #fa5c74;
-			background-color:#fa5c74;
 			color:#fff;
 		}
 
@@ -264,6 +271,7 @@
 
 		<div id="jobPostingContainer" hidden>
 
+			<h3 class="back-button"> ◀ </h3>
 			<h1 class="header-title"> Job Posting </h1>
 			<div class="divider"></div>
 
@@ -352,8 +360,8 @@
 				<div class="row">
 					<div class="col-12 col-m-12 col-s-12">
 						<fieldset>
-						<legend class="row">incentiveCompensation</legend>
-						<ui-array-input id="incentiveCompensation" name="incentiveCompensation" placeholder="Incentive"></ui-array-input>
+						<legend class="row">Incentive Compensation</legend>
+						<ui-array-input id="incentiveCompensation" name="incentiveCompensation" placeholder="Incentive" ></ui-array-input>
 						</fieldset>
 					</div>
 				</div>
@@ -394,10 +402,24 @@
 				</div>
 
 				<div class="row">
-					<button id="finishButton" type="submit" class="big-button"> PUBLISH </button>
+					<div class="col-12 col-m-12 col-s-12">
+						<button id="finishButton" type="submit" class="big-button"> FINISH </button>
+					</div>
 				</div>
 
+				<div class="payment">
+					Each job listing is $450.00 and runs for 30 days.
 
+					You may advertise one job per listing.
+
+					We reserve the right to remove or modify any listing for any reason. Any removed listings will be refunded the full amount paid.
+
+					If you have any questions or concerns please email jobs@github.com.
+
+					Want to post multiple jobs at the same time?
+
+					Email us and we'll make it happen: jobs@github.com.
+				</div>
 				<div class="row hidden">
 					<div class="col-12 col-m-12 col-s-12">
 						<label class="row">Date Posted</label>

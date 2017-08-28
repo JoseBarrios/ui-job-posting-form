@@ -1,5 +1,8 @@
 //TODO:
+//Input array last input not added unless click add
+//Place instead of address for jobLocation
 //Location issue (after setting input array)
+//
 
 'use strict'
 const uiJobPostingFormDocument = document._currentScript || document.currentScript;;
@@ -17,7 +20,7 @@ class UIJobPostingFormViewController extends HTMLElement{
 		this.shadowRoot.appendChild(view);
 		this.defaultEventName = 'update';
 		this.connected = false;
-  }
+	}
 
 	///STANDARD
 	connectedCallback() {
@@ -36,6 +39,8 @@ class UIJobPostingFormViewController extends HTMLElement{
 		this.$experienceRequirements = this.shadowRoot.querySelector('#experienceRequirements');
 		this.$experienceRequirements.addEventListener('update', e => { this._updateArrayInputs(e)}, false);
 
+
+
 		//START: Hiring Organization
 		this.$hiringOrganizationName = this.shadowRoot.querySelector('#hiringOrganizationName');
 		this.$hiringOrganizationName.addEventListener('input', e => { this._updateOrganization(e) }, false);
@@ -48,8 +53,10 @@ class UIJobPostingFormViewController extends HTMLElement{
 
 		this.$hiringOrganizationDescription = this.shadowRoot.querySelector('#hiringOrganizationDescription');
 		this.$hiringOrganizationDescription.addEventListener('input', e => { this._updateOrganization(e) }, false);
-
 		//END: Hiring Organization
+
+
+
 		this.$incentiveCompensation = this.shadowRoot.querySelector('#incentiveCompensation');
 		this.$incentiveCompensation.addEventListener('update', e => { this._updateArrayInputs(e)}, false);
 
@@ -82,8 +89,6 @@ class UIJobPostingFormViewController extends HTMLElement{
 
 		this.$title = this.shadowRoot.querySelector('#title');
 		this.$title.addEventListener('input', e => { this._updateBasicInputs(e)});
-		this.$title.addEventListener('focus', e => { this._updateBasicInputs(e)});
-		this.$title.addEventListener('focus', e => { this._updateBasicInputs(e)});
 
 		this.$validThrough = this.shadowRoot.querySelector('#validThrough');
 		this.$validThrough.addEventListener('input', e => { this._updateBasicInputs(e)});
@@ -107,16 +112,20 @@ class UIJobPostingFormViewController extends HTMLElement{
 
 		this.$nextButton = this.shadowRoot.querySelector('#nextButton');
 		this.$nextButton.addEventListener('click', e => {
-					this.$hiringOrganizationContainer.hidden = true;
-					this.$jobPostingContainer.hidden = false;
+			this.$hiringOrganizationContainer.hidden = true;
+			this.$jobPostingContainer.hidden = false;
+		})
+
+		this.$backButton = this.shadowRoot.querySelector('.back-button');
+		this.$backButton.addEventListener('click', e => {
+			this.$hiringOrganizationContainer.hidden = false;
+			this.$jobPostingContainer.hidden = true;
 		})
 
 		this.$finishButton = this.shadowRoot.querySelector('#finishButton');
 		this.$finishButton.addEventListener('click', e => {
-					this.$hiringOrganizationContainer.hidden = true;
-					this.$jobPostingContainer.hidden = true;
+			this._finishEvent();
 		})
-
 
 		this.setDefaults();
 		this.connected = true;
@@ -159,9 +168,8 @@ class UIJobPostingFormViewController extends HTMLElement{
 	}
 
 	_updateArrayInputs(e){
-		if(e.detail !== "" && e.detail[0] !== ""){
-			this[e.target.id] = e.detail;
-		}
+		console.log('UPDATE ARRAY', e.target.id, e.detail.string);
+		this[e.target.id] = e.detail.string;
 	}
 
 	_updateAddressInputs(e){
@@ -205,6 +213,11 @@ class UIJobPostingFormViewController extends HTMLElement{
 		this.setAttribute('value', JSON.stringify(this.value));
 	}
 
+	_finishEvent(e){
+		this.dispatchEvent(new CustomEvent('finish', {detail: this.value}))
+	}
+
+
 	_updateEvent(e){
 		this.dispatchEvent(new CustomEvent('update', {detail: this.value}))
 	}
@@ -214,7 +227,9 @@ class UIJobPostingFormViewController extends HTMLElement{
 	get shadowRoot(){return this._shadowRoot;}
 	set shadowRoot(value){ this._shadowRoot = value}
 
-    //MASTER
+
+
+	//MASTER
 	get value(){
 		let value = JobPosting.assignedProperties(this.model)
 		if(value.hiringOrganization){
@@ -237,9 +252,12 @@ class UIJobPostingFormViewController extends HTMLElement{
 		this._updateEvent();
 	}
 
+
+
+
 	get baseSalary(){return this.model.baseSalary;}
 	set baseSalary(value){
-		this.model.industry = value === ''? ' ': value;
+		this.model.baseSalary = value === ''? ' ': value;
 		this._updateAttribute();
 	}
 
@@ -269,14 +287,14 @@ class UIJobPostingFormViewController extends HTMLElement{
 
 	//THIS IS PROB WHERE THE ISSUE IS
 	get hiringOrganization(){
-		let value = JobPosting.assignedProperties(this.model);
-		if(value.hiringOrganization){
-			value.hiringOrganization = Organization.assignedProperties(value.hiringOrganization);
-			if(value.hiringOrganization.address){
-				value.hiringOrganization.address = PostalAddress.assignedProperties(value.hiringOrganization.address);
+		let model = JobPosting.assignedProperties(this.model);
+		if(model.hiringOrganization){
+			model = Organization.assignedProperties(model.hiringOrganization);
+			if(model.address){
+				model.address = PostalAddress.assignedProperties(model.address);
 			}
 		}
-		return value;
+		return model;
 	}
 
 	set hiringOrganization(value){
@@ -335,6 +353,7 @@ class UIJobPostingFormViewController extends HTMLElement{
 
 	get skills(){return this.model.skills;}
 	set skills(value){
+		console.log('UPDATING SKILLS', value)
 		this.model.skills = value
 		this._updateAttribute();
 	}
