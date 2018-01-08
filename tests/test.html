@@ -2,83 +2,78 @@
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.1/webcomponents-lite.js'></script>
 <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCYa2I7Yl5A1pz1QptlJsgxEHy00xGDkzc&libraries=places'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js'></script>
 
 <link rel='import' href='../element/index.html'>
-<link rel='import' href='../node_modules/@josebarrios/ui-address-input/element/index.html'>
-<link rel='import' href='../node_modules/@josebarrios/ui-image-input/element/index.html'>
-<link rel='import' href='../node_modules/@josebarrios/ui-array-input/element/index.html'>
-
-<link rel='import' href='../node_modules/@josebarrios/ui-organization-card/element/index.html'>
-<link rel='import' href='../node_modules/@josebarrios/ui-job-posting/element/index.html'>
-<link rel='import' href='../node_modules/@josebarrios/ui-job-posting-card/element/index.html'>
-<link rel='import' href='../bower_components/view-json/view-json.html'>
+<link rel='import' href='../node_modules/ui-address-input/element/index.html'>
+<link rel='import' href='../node_modules/ui-array-input/element/index.html'>
+<link rel='import' href='../node_modules/ui-image-input/element/index.html'>
+<link rel='import' href='../node_modules/ui-organization-card/element/index.html'>
+<link rel='import' href='../node_modules/ui-job-posting/element/index.html'>
+<link rel='import' href='../node_modules/ui-job-posting-card/element/index.html'>
+<!--<link rel='import' href='../bower_components/view-json/view-json.html'>-->
 
 <title> ui-job-posting-form </title>
 
 <style>
-  body {
-    background-color:#e6e6e6;
-    width:100%;
-    padding:0px;
-    margin:0px;
-  }
+	body {
+		background-color:#e6e6e6;
+		width:100%;
+		padding:0px;
+		margin:0px;
+	}
 
-  .header{
-    width:100%;
-    height:10vh;
-    background-color:#fa5c74;
-    border-bottom:1px solid gray;
-  }
+	.header{
+		width:100%;
+		height:10vh;
+		background-color:#fa5c74;
+		border-bottom:1px solid gray;
+	}
 
-  .left-pannel {
-    width:40%;
-    height:calc(100%);
-    position:fixed;
-    overflow:scroll;
-    border-right:1px solid #a9a9a9;
-    background-color:#fafafa;
-  }
+	.left-pannel {
+		width:40%;
+		height:calc(100%);
+		position:fixed;
+		overflow:scroll;
+		border-right:1px solid #a9a9a9;
+		background-color:#fafafa;
+	}
 
-  .right-pannel {
-    height:calc(100%);
-    overflow:scroll;
-    margin-left:calc(40%);
-		background-color:#282c34;
-  }
+	.right-pannel {
+		height:calc(100%);
+		overflow:scroll;
+		margin-left:calc(40%);
+		//background-color:#282c34;
+	}
 
-  .job-posting-container {
+	.job-posting-container {
 		padding:44px;
-    width:calc(100% - 88px);
-  }
+		width:calc(100% - 88px);
+	}
 
 	view-json {
 		width:100%;
 		height:100vh;
 		padding:0px;
 		margin:0px;
-
 	}
 
 </style>
 
 <body>
 
-	<!--<div class="header"> </div>-->
-
-  <div class="left-pannel">
-    <ui-job-posting-form></ui-job-posting-form>
-  </div>
-  <div class="right-pannel">
+	<div class="left-pannel">
+		<ui-job-posting-form></ui-job-posting-form>
+	</div>
+	<div class="right-pannel">
 		<div class="job-posting-container">
-			<!--<view-json> {} </view-json>-->
-			<ui-job-posting-card></ui-job-posting-card>
 			<ui-job-posting></ui-job-posting>
 		</div>
-  </div>
+	</div>
 </body>
 
 <script>
-const $form = document.querySelector('ui-job-posting-form');
+	const $form = document.querySelector('ui-job-posting-form');
 //const $viewJSON = document.querySelector('view-json');
 const $jobPostingCard = document.querySelector('ui-job-posting-card');
 const $jobPosting = document.querySelector('ui-job-posting');
@@ -87,16 +82,16 @@ const $jobPosting = document.querySelector('ui-job-posting');
 //FORMAT SETTING OF FORM VARIABLES, AND RETRIVING IS WRONG
 $form.addEventListener('update', function(e){
 	console.log(e.detail)
-  //$viewJSON.innerHTML = JSON.stringify(e.detail);
-  $jobPosting.setAttribute('value', JSON.stringify(e.detail));
-  $jobPostingCard.setAttribute('value', JSON.stringify(e.detail));
+	//$viewJSON.innerHTML = JSON.stringify(e.detail);
+	$jobPosting.setAttribute('value', JSON.stringify(e.detail));
+	//$jobPostingCard.setAttribute('value', JSON.stringify(e.detail));
 })
 
 //$form.addEventListener('finish', function(e){
-	//console.log('FINISH', e.detail)
-  //$jobPosting.setAttribute('value', JSON.stringify(e.detail));
-  //$jobPostingCard.setAttribute('value', JSON.stringify(e.detail));
-  //$viewJSON.innerHTML = JSON.stringify(e.detail);
+//console.log('FINISH', e.detail)
+//$jobPosting.setAttribute('value', JSON.stringify(e.detail));
+//$jobPostingCard.setAttribute('value', JSON.stringify(e.detail));
+//$viewJSON.innerHTML = JSON.stringify(e.detail);
 //})
 
 

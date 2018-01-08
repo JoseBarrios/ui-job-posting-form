@@ -12,8 +12,8 @@ class UIJobPostingFormViewController extends HTMLElement{
 
 	static get observedAttributes() { return ["value"]; }
 
-  constructor(model){
-    super();
+	constructor(model){
+		super();
 		this.model = new JobPosting(model);
 		const view = document.importNode(uiJobPostingFormTemplate.content, true);
 		this.shadowRoot = this.attachShadow({mode: 'open'});
@@ -39,8 +39,6 @@ class UIJobPostingFormViewController extends HTMLElement{
 		this.$experienceRequirements = this.shadowRoot.querySelector('#experienceRequirements');
 		this.$experienceRequirements.addEventListener('update', e => { this._updateArrayInputs(e)}, false);
 
-
-
 		//START: Hiring Organization
 		this.$hiringOrganizationName = this.shadowRoot.querySelector('#hiringOrganizationName');
 		this.$hiringOrganizationName.addEventListener('input', e => { this._updateOrganization(e) }, false);
@@ -54,8 +52,6 @@ class UIJobPostingFormViewController extends HTMLElement{
 		this.$hiringOrganizationDescription = this.shadowRoot.querySelector('#hiringOrganizationDescription');
 		this.$hiringOrganizationDescription.addEventListener('input', e => { this._updateOrganization(e) }, false);
 		//END: Hiring Organization
-
-
 
 		this.$incentiveCompensation = this.shadowRoot.querySelector('#incentiveCompensation');
 		this.$incentiveCompensation.addEventListener('update', e => { this._updateArrayInputs(e)}, false);
@@ -251,9 +247,6 @@ class UIJobPostingFormViewController extends HTMLElement{
 		//DO NOT UPDATE ATTRIBUTE HERE, OTHERWISE INFINITE LOOP HAPPENS
 		this._updateEvent();
 	}
-
-
-
 
 	get baseSalary(){return this.model.baseSalary;}
 	set baseSalary(value){
