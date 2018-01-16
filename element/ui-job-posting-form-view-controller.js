@@ -20,6 +20,7 @@ class UIJobPostingFormViewController extends HTMLElement{
 		this.shadowRoot.appendChild(view);
 		this.defaultEventName = 'update';
 		this.connected = false;
+		console.log('Hello, world!');
 	}
 
 	///STANDARD
