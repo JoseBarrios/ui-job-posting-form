@@ -36,7 +36,7 @@
 		"ui-array-input": "^0.1.0",
 		"ui-image-input": "^0.1.0",
 		"ui-job-posting": "^0.1.0",
-		"ui-job-posting-card": "^0.1.0",
+		"ui-job-posting-card": "^0.1.3",
 		"ui-organization-card": "^0.1.0"
 	}
 }
