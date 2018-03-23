@@ -5,29 +5,29 @@
       "/Users/estefania/GitHub/app-admin"
     ]
   ],
-  "_from": "ui-job-posting-form@^0.1.9",
-  "_id": "ui-job-posting-form@0.1.10",
+  "_from": "ui-job-posting-form@^0.1.2",
+  "_id": "ui-job-posting-form@0.1.9",
   "_inBundle": false,
-  "_integrity": "sha512-CRccTQPfTem9TBJx4WalQtqG7bGsJhXGGQbLNkwXR8WsZXNABupeViTr8Bf27FjwiEPBhw7KA569edlvPyj8XA==",
+  "_integrity": "sha512-NXEaeRiodCfrTUBimWaQ9b6hsyAG3jwkfvci71OfWERkKR6NadEYsMzZbyQwEIFHprSBZV30XJi8Whqorw7M9g==",
   "_location": "/ui-job-posting-form",
   "_phantomChildren": {},
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "ui-job-posting-form@^0.1.9",
+    "raw": "ui-job-posting-form@^0.1.2",
     "name": "ui-job-posting-form",
     "escapedName": "ui-job-posting-form",
-    "rawSpec": "^0.1.9",
+    "rawSpec": "^0.1.2",
     "saveSpec": null,
-    "fetchSpec": "^0.1.9"
+    "fetchSpec": "^0.1.2"
   },
   "_requiredBy": [
     "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/ui-job-posting-form/-/ui-job-posting-form-0.1.10.tgz",
-  "_shasum": "3f992f1f44901833b28b188fade002545af9a7f0",
-  "_spec": "ui-job-posting-form@^0.1.9",
+  "_resolved": "https://registry.npmjs.org/ui-job-posting-form/-/ui-job-posting-form-0.1.9.tgz",
+  "_shasum": "34fe728d0a888e296aba67c7cdc7dc2846862d39",
+  "_spec": "ui-job-posting-form@^0.1.2",
   "_where": "/Users/estefania/GitHub/app-admin",
   "author": {
     "name": "JoseBarrios"
@@ -72,5 +72,5 @@
     "build": "npm upgrade; ./node_modules/webpack/bin/webpack.js",
     "test": "npm run-script build; ./node_modules/http-server/bin/http-server"
   },
-  "version": "0.1.10"
+  "version": "0.1.11"
 }

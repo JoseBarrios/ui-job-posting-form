@@ -68,7 +68,6 @@ class UIJobPostingFormViewController extends HTMLElement{
 		this.setDefaults();
 
 		for (var key in this.value) {
-			console.log(key)
 			switch(key) {
 				case('hiringOrganization'):
 					for (var orgKey in this.value[key]) {
@@ -95,6 +94,8 @@ class UIJobPostingFormViewController extends HTMLElement{
 		}
 
 		this.$hiringOrganizationAddress.addEventListener('update', e => { this._updateAddressInputs(e) }, false);
+		this.$hiringOrganizationLogo.addEventListener('update', e => { this._updateOrganizationLogo(e) }, false);
+
 		this.$jobLocation.addEventListener('update', e => { this._updateAddressInputs(e)});
 		//UI
 		this.$hiringOrganizationContainer = this.shadowRoot.querySelector('#hiringOrganizationContainer');
@@ -200,6 +201,12 @@ class UIJobPostingFormViewController extends HTMLElement{
 				break;
 			default:
 				console.warn(`Target element id: '${e.target.id}' is not handled`);
+		}
+	}
+
+	_updateOrganizationLogo(e) {
+		if (this.$hiringOrganizationLogoURL && e.detail) {
+			this.$hiringOrganizationLogoURL.value = e.detail
 		}
 	}
 
