@@ -1,4 +1,7 @@
 <script type="text/javascript" src="https://static.filestackapi.com/v3/filestack.js"></script>
+<link rel="import" href="/ui-address-input/element/index.html">
+<link rel="import" href="/ui-image-input/element/index.html">
+<link rel="import" href="/ui-array-input/element/index.html">
 
 <template id="ui-job-posting-form-view">
 	<style>
@@ -215,10 +218,8 @@
 		}
 	</style>
 
-
 	<div class="form-container">
-		<input id="csrfToken" type="hidden" name="_csrf">
-
+		<form id="form" method="POST" action="">
 
 		<div id="hiringOrganizationContainer">
 			<h1 class="header-title"> Hiring Organization </h1>
@@ -229,14 +230,16 @@
 				<div class="row">
 					<div class="col-12 col-m-12 col-s-12">
 						<label class="row">Name</label>
-						<input id="hiringOrganizationName" name="hiringOrganizationName" placeholder="Company, Inc" required type="text" class="col-12 col-m-12 col-s-12">
+						<input id="hiringOrganizationName" name="hiringOrganizationName" placeholder="Company, Inc"  type="text" class="col-12 col-m-12 col-s-12">
 					</div>
 				</div>
 
 				<div class="row">
 					<div class="col-12 col-m-12 col-s-12">
 						<label class="row">Address</label>
-						<ui-address-input id="hiringOrganizationAddress" name="hiringOrganizationAddress" placeholder="1234 Street, Los Angeles, CA" required class="col-12 col-m-12 col-s-12"></ui-address-input>
+						<input type="hidden" name="hiringOrganizationLocation" id = "hiringOrganizationLocation"></input>
+						<ui-address-input id="hiringOrganizationAddress" name="hiringOrganizationAddress" placeholder="1234 Street, Los Angeles, CA" class="col-12 col-m-12 col-s-12"></ui-address-input>
+
 					</div>
 				</div>
 
@@ -251,6 +254,7 @@
 					<div class="col-12 col-m-12 col-s-12">
 						<label class="row">Company Logo</label>
 						<ui-image-input id="hiringOrganizationLogo" name="hiringOrganizationLogo" class="col-12 col-m-12 col-s-12"></ui-image-input>
+						<input type="hidden" name="hiringOrganizationLogoURL" id="hiringOrganizationLogoURL">
 					</div>
 				</div>
 
@@ -260,14 +264,13 @@
 						<textarea id="hiringOrganizationDescription" name="hiringOrganizationDescription" placeholder="The company description is an essential part of a job posting. Your company description should be exactly what it sounds like: an overview containing all of the most important points about your company. " type="text" class="col-12 col-m-12 col-s-12"></textarea>
 					</div>
 				</div>
+			<!-- </div> -->
 
 				<div class="row">
-					<button id="nextButton" type="submit" class="big-button" >NEXT</button>
+					<button id="nextButton" class="big-button" >NEXT</button>
 				</div>
-				<!--</fieldset>-->
+				
 		</div>
-
-		<!--<div class="divider"></div>-->
 
 		<div id="jobPostingContainer" hidden>
 
@@ -279,14 +282,15 @@
 				<!--<legend> Job Posting</legend>-->
 				<div class="row">
 					<div class="col-12 col-m-12 col-s-12">
-						<label class="row">Job Title</label>
-						<input id="title" name="title" placeholder="Commander, Space Shuttle" type="text" class="col-12 col-m-12 col-s-12">
+						<label  class="row">Job Title</label>
+						<input required id="title" name="title" placeholder="Commander, Space Shuttle" type="text" class="col-12 col-m-12 col-s-12">
 					</div>
 				</div>
 
 				<div class="row">
 					<div class="col-12 col-m-12 col-s-12">
 						<label class="row">Location</label>
+						<input required type="hidden" id ="jobLocationInput" name="jobLocation"></input>
 						<ui-address-input id="jobLocation" name="jobLocation" class="col-12 col-m-12 col-s-12"></ui-address-input>
 					</div>
 				</div>
@@ -294,7 +298,7 @@
 				<div class="row">
 					<div class="col-6 col-m-12 col-s-12">
 						<label class="row">Employment Type</label>
-						<select id="employmentType" name="employmentType" class="col-12 col-m-12 col-s-12">
+						<select  required id="employmentType" name="employmentType" class="col-12 col-m-12 col-s-12">
 							<option value="">Select One</option>
 							<option value="Full-Time">Full-time</option>
 							<option value="Part-Time">Part-time</option>
@@ -326,7 +330,7 @@
 				<div class="row">
 					<div class="col-12 col-m-12 col-s-12">
 						<label class="row">Description</label>
-						<textarea id="description" name="description" type="text" placeholder="The Job Description section should provide a clear and concise snapshot of the position. This way, job seekers can quickly get an overview and understand the key responsibilities, tasks and skills your job requires."></textarea>
+						<textarea required id="description" name="description" type="text" placeholder="The Job Description section should provide a clear and concise snapshot of the position. This way, job seekers can quickly get an overview and understand the key responsibilities, tasks and skills your job requires."></textarea>
 					</div>
 				</div>
 
@@ -389,17 +393,25 @@
 					<div class="col-12 col-m-12 col-s-12">
 						<fieldset>
 							<legend class="row">Responsibilities</legend>
-							<ui-array-input id="responsibilities" name="responsibilities" placeholder="Responsability" class="col-12 col-m-12 col-s-12"></ui-array-input>
+							<ui-array-input id="responsibilities" name="responsibilities" placeholder="Responsibility" class="col-12 col-m-12 col-s-12"></ui-array-input>
 						</fieldset>
 					</div>
 				</div>
 
 				<div class="row">
 					<div class="col-12 col-m-12 col-s-12">
-						<label class="row">specialCommitments</label>
+						<label class="row">Apply Url</label>
+						<input id="url" name="url" type="text" placeholder="Job url" class="col-12 col-m-12 col-s-12"></input>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-12 col-m-12 col-s-12">
+						<label class="row">Special Commitments</label>
 						<textarea id="specialCommitments" name="specialCommitments" type="text" placeholder="Any special commitments associated with this job posting. Valid entries include Veteran, Military spouse, affirmative action commitments, etc" class="col-12 col-m-12 col-s-12"></textarea>
 					</div>
 				</div>
+				<input id="csrf" type="hidden" name="_csrf" class="form-control" value="">
 
 				<div class="row">
 					<div class="col-12 col-m-12 col-s-12">
@@ -431,7 +443,8 @@
 						<input id="validThrough" name="validThrough" type="date" class="col-12 col-m-12 col-s-12"></input>
 					</div>
 				</div>
-				<!--</fieldset>-->
+			<!--</fieldset>-->
+			</form>
 		</div>
 	</div>
 
