@@ -276,7 +276,7 @@ class UIJobPostingFormViewController extends HTMLElement{
 
 
 	get value(){
-		let value = JobPosting.assignedProperties(this.model)
+		let value = this.model
 		if(value.hiringOrganization){
 			value.hiringOrganization = Organization.assignedProperties(this.model.hiringOrganization)
 			if(value.hiringOrganization.address){
@@ -286,8 +286,7 @@ class UIJobPostingFormViewController extends HTMLElement{
 		return value;
 	}
 	set value(value){
-		this.model = new JobPosting(value);
-
+		this.model = value
 		if(value.description) {
 			this.model.description = value.description
 		}
