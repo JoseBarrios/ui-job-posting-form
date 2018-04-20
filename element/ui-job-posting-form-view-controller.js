@@ -90,7 +90,9 @@ class UIJobPostingFormViewController extends HTMLElement{
 					this["$" + key].value = this.value[key].replace(";", '\n')
 					break;
 				default: 
-					this["$" + key].value = this.value[key]
+					if (this["$" + key]) {
+						this["$" + key].value = this.value[key]
+					}
 					
 			}
 		}
