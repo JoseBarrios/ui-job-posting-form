@@ -59,6 +59,8 @@ class UIJobPostingFormViewController extends HTMLElement{
 		this.$skills = this.shadowRoot.querySelector('#skills');
 
 		this.$specialCommitments = this.shadowRoot.querySelector('#specialCommitments');
+		this.$applicationInstructions = this.shadowRoot.querySelector('#applicationInstructions');
+
 		this.$title = this.shadowRoot.querySelector('#title');
 		this.$validThrough = this.shadowRoot.querySelector('#validThrough');
 		this.$workHours = this.shadowRoot.querySelector('#workHours');
@@ -405,6 +407,12 @@ class UIJobPostingFormViewController extends HTMLElement{
 	get specialCommitments(){return this.model.specialCommitments;}
 	set specialCommitments(value){
 		this.model.specialCommitments = value === ''? ' ': value;
+		this._updateAttribute();
+	}
+
+	get applicationInstructions(){return this.model.applicationInstructions;}
+	set applicationInstructions(value){
+		this.model.applicationInstructions = value === ''? ' ': value;
 		this._updateAttribute();
 	}
 
